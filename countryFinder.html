@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Country Game</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="index.html" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+    <script type="module">
+        import { Analytics } from 'https://cdn.vercel.com/analytics/v1';
+        Analytics();
+    </script>
+    <h1>Find the Country Game</h1>
+    <div id="game-controls"></div>
+    <div id="target-country">Find: <span id="country-to-find"></span></div>
+    <div id="score">Score: <span id="current-score">0</span></div>
+    <div id="map-container"></div>
+    <div id="message-container"></div>
+    <div id="game-overlay">
+        <div id="start-menu">
+            <h2>Select Game Mode</h2>
+            <div id="game-modes">
+                <div class="mode-card" onclick="showDifficultySelect('time')">
+                    <div class="mode-title">Against Time ⏱️</div>
+                    <div class="mode-description">Find as many countries as you can in 3 minutes!</div>
+                </div>
+                <div class="mode-card" onclick="showDifficultySelect('all')">
+                    <div class="mode-title">Find All Countries 🌎</div>
+                    <div class="mode-description">Take your time to find all countries in the selected region.</div>
+                </div>
+                <div class="mode-card" onclick="showDifficultySelect('alphabetic')">
+                    <div class="mode-title">Alphabetic Challenge 🔤</div>
+                    <div class="mode-description">Find countries in alphabetical order!</div>
+                </div>
+                <div class="mode-card" onclick="showDifficultySelect('streak')">
+                    <div class="mode-title">Streak Mode 🔥</div>
+                    <div class="mode-description">How many countries can you find in a row without mistakes?</div>
+                </div>
+                <div class="mode-card" onclick="showDifficultySelect('hints')">
+                    <div class="mode-title">Hints Mode 💡</div>
+                    <div class="mode-description">Use hints wisely to find countries! Limited hints per game.</div>
+                </div>
+            </div>
+            <div id="difficulty-select" class="difficulty-select">
+                <button class="back-btn" onclick="showGameModes()">←</button>
+                <h3>Select Difficulty</h3>
+                <button class="game-btn" onclick="startGame('easy')">Easy</button>
+                <button class="game-btn" onclick="startGame('normal')">Normal</button>
+                <button class="game-btn" onclick="startGame('hard')">Hard</button>
+                <button class="game-btn" style="background: #e74c3c" onclick="confirmUltraMode()">Ultra</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="finish-btn" class="game-btn hidden" onclick="finishGame()">
+        <i class="fas fa-flag"></i> End Game
+    </button>
+    <button id="menu-btn" class="game-btn hidden menu-btn" onclick="showMainMenu()">
+        <i class="fas fa-home"></i> Menu
+    </button>
+    <div id="timer">Time: 3:00</div>
+
+    <div id="streak-counter" class="streak-counter hidden">Current Streak: <span id="current-streak">0</span></div>
+    <div id="best-streak" class="best-streak hidden">Best Streak: <span id="max-streak">0</span></div>
+
+    <button id="hint-btn" class="hint-btn hidden" onclick="showHint()">Get Hint (2)</button>
+    <div id="hint-container" class="hint-container">
+        <p id="hint-text" class="hint-text"></p>
+    </div>
+    <div class="hints-left">Hints remaining: 2</div>
+
+    <!-- Add this button next to the hint button -->
+    <button id="finish-btn" class="game-btn hidden" onclick="finishGame()">End Game</button>
+    <button id="surrender-btn" class="surrender-btn hidden" onclick="surrenderHint()">Surrender</button>
+
+    <script src="game.js"></script>
+</body>
+</html>
