@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find the Country Game</title>
+    <title>Country - Odyssey</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
@@ -14,13 +14,15 @@
 <body>
     <a href="index.html" class="back-to-home">
         <i class="fas fa-arrow-left"></i>
-        Back to Home
+        Library
     </a>
     <script type="module">
         import { Analytics } from 'https://cdn.vercel.com/analytics/v1';
         Analytics();
     </script>
-    <h1>Find the Country Game</h1>
+    <h1 id="site-title" style="    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;">Country - Odyssey</h1>
     <div id="game-controls"></div>
     <div id="target-country">Find: <span id="country-to-find"></span></div>
     <div id="score">Score: <span id="current-score">0</span></div>
@@ -68,6 +70,17 @@
     <button id="menu-btn" class="game-btn hidden menu-btn" onclick="showMainMenu()">
         <i class="fas fa-home"></i> Menu
     </button>
+
+    <div id="best-streak" class="best-streak hidden">Best Streak: <span id="max-streak">0</span></div>
+
+    <div class="version-info">made by <strong>vusal</strong> | 1.0.0</div>
+    <a href="https://forms.gle/a4KJVSvsfVeBH7pMA" 
+       target="_blank" 
+       id="feedback-btn"
+       class="game-btn hidden feedback-btn">
+        Feedback & Suggestions & Report Bugs
+    </a>
+
     <div id="timer">Time: 3:00</div>
 
     <div id="streak-counter" class="streak-counter hidden">Current Streak: <span id="current-streak">0</span></div>
@@ -84,9 +97,5 @@
     <button id="surrender-btn" class="surrender-btn hidden" onclick="surrenderHint()">Surrender</button>
 
     <script src="game.js"></script>
-    <script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
