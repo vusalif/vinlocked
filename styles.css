@@ -4,6 +4,9 @@ body {
     padding: 20px;
     text-align: center;
 }
+.site-title {
+    color: #ff0000;
+}
 #map-container {
     width: 800px;
     height: 500px;
@@ -216,16 +219,15 @@ body {
 .menu-btn {
     position: fixed;
     top: 70px;
-    right: 100px;
+    right: 50px;
     z-index: 900;
     background: #3498db;
-
 }
 
 #finish-btn {
     position: fixed;
     top: 20px;
-    right: 100px;
+    right: 50px;
     z-index: 900;
 }
 
@@ -391,4 +393,29 @@ body {
 
 .back-to-home i {
     margin-right: 8px;
+}
+
+#start-menu {
+    text-align: center;
+}
+
+.version-info {
+    position: fixed;
+    bottom: 20px;  /* Adjust this value to position above the feedback button */
+    right: 50px;
+    font-size: 14px;
+    color: #666;
+}
+
+.feedback-btn {
+    position: fixed !important;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: none;
+    opacity: 0.5;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    color: #000000;
 }
