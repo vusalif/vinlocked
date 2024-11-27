@@ -38,17 +38,16 @@ let map;
     ],
     hard: [
         'Uruguay', 'Tunisia', 'Cambodia', 'Laos', 'Nepal', 'Mongolia', 
-        'Qatar', 'Kuwait', 'Bahrain', 'Bhutan', 'Timor-Leste', 'Brunei', 
-        'Djibouti', 'Burundi', 'Seychelles', 'Comoros', 'Micronesia', 
-        'Marshall Islands', 'Palau', 'Nauru', 'Saint Kitts and Nevis', 
-        'Dominica', 'Saint Lucia', 'Grenada', 'Barbados', 'Antigua and Barbuda', 
+        'Qatar', 'Kuwait', 'Bahrain', 'Bhutan', 'Brunei', 
+        'Djibouti', 'Burundi', 'Saint Kitts and Nevis', 'Dominica', 
+        'Saint Lucia', 'Grenada', 'Barbados', 'Antigua and Barbuda', 
         'Malta', 'Liechtenstein', 'Andorra', 'Monaco', 'San Marino', 
-        'Vatican City', 'Benin', 'Cape Verde', 'Chad', 'Equatorial Guinea', 
-        'Eritrea', 'Fiji', 'Gabon', 'Gambia', 'Guinea', 'Guinea-Bissau', 
-        'Kiribati', 'Kosovo', 'Liberia', 'Maldives', 'Mauritania', 
-        'Mauritius', 'Namibia', 'Papua New Guinea', 'São Tomé and Príncipe', 
-        'Solomon Islands', 'Somalia', 'Suriname', 'Tajikistan', 'Togo', 
-        'Tonga', 'Trinidad and Tobago', 'Turkmenistan', 'Vanuatu', 'Lesotho', 
+        'Benin', 'Cape Verde', 'Chad', 'Equatorial Guinea', 
+        'Eritrea', 'Gabon', 'Gambia', 'Guinea', 'Guinea-Bissau', 
+        'Kosovo', 'Liberia', 'Maldives', 'Mauritania', 
+        'Mauritius', 'Namibia', 'Papua New Guinea', 'Solomon Islands', 
+        'Suriname', 'Tajikistan', 'Togo', 
+        'Trinidad and Tobago', 'Turkmenistan', 'Vanuatu', 'Lesotho', 
         'Eswatini'
     ],
     ultra: [
@@ -57,33 +56,33 @@ let map;
         'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan',
         'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria',
         'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada',
-        'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros',
+        'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia',
         'Congo', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
         'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominica',
         'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea',
-        'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji', 'Finland', 'France',
+        'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Finland', 'France',
         'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada',
         'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras',
         'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland',
         'Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya',
-        'Kiribati', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
+        'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
         'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar',
-        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands',
-        'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco',
+        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta',
+        'Mauritania', 'Mauritius', 'Mexico', 'Moldova', 'Monaco',
         'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia',
-        'Nauru', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger',
-        'Nigeria', 'North Korea', 'North Macedonia', 'Norway', 'Oman', 'Pakistan',
-        'Palau', 'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru',
+         'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger',
+        'Nigeria', 'North Korea', 'Macedonia', 'Norway', 'Oman', 'Pakistan',
+         'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru',
         'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda',
         'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines',
         'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal',
-        'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia',
+        'Serbia', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia',
         'Solomon Islands', 'Somalia', 'South Africa', 'South Korea', 'South Sudan',
         'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria',
-        'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Timor-Leste', 'Togo',
-        'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu',
+        'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Togo',
+        'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu',
         'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 
-        'United States of America', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City',
+        'United States of America', 'Uruguay', 'Uzbekistan', 'Vanuatu',
         'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
     ]
         };
@@ -105,7 +104,22 @@ let map;
             "Plot twist: That's the wrong country! 🌪️",
             "Oof! Not even close! 🙈",
             "Mission failed, we'll get 'em next time! 🎮",
-            "Wrong answers only challenge? 🤔"
+            "Wrong answers only challenge? 🤔",
+            "Close... but not close enough! 🌍",  
+            "Oops, you just invented a new country! 🗺️",  
+            "Try again, cartographer-in-training! 🧭",  
+            "Geography gods are not impressed. 😔",  
+            "That's not even in the same hemisphere! 🌐",  
+            "If guessing was a sport, you'd be benched! 🏀",  
+            "Nope. But hey, points for confidence! 👍",  
+            "Almost... just kidding, not even close! 😂",  
+            "Looks like your compass is broken! 🧭",  
+            "Wrong! But your effort is... noticeable! 🤔",  
+            "You're making the map blush! 😳",  
+            "History books won't remember this guess. 📖",  
+            "Did you just close your eyes and pick one? 🎯",  
+            "Somewhere in another timeline, thats right! 🕰️",  
+            "Try harder, globe trotter! 🌎" 
         ];
 
         const successMessages = [
@@ -118,7 +132,22 @@ let map;
             "Sheeeesh! You nailed it! ✨",
             "Main character energy right there! 🌟",
             "Certified geography moment! 📍",
-            "You dropped this 👑"
+            "You dropped this 👑",
+            "Youre on fire! 🔥",  
+            "World traveler vibes! ✈️",  
+            "You ate that map up! 🗺️✨",  
+            "Big brain energy right here! 🧠💡",  
+            "Thats a dub for the geography squad! 🏆",  
+            "Geography genius spotted! 👀",  
+            "King/Queen of the map! 👑",  
+            "Absolutely goated with the globe! 🐐🌍",  
+            "Legend behavior unlocked! 💯",  
+            "Geography got nothing on you! 😎",  
+            "Straight to the point, like a compass! 🧭",  
+            "Chefs kiss for that answer! 👌🍴",  
+            "World domination starts here! 🌐",  
+            "Certified cartographer moment! 📜",  
+            "Youre mapping out greatness! 🗺️"  
         ];
 
         const streakMessages = {
@@ -178,7 +207,7 @@ let map;
     ],
     'Armenia': [
         'One of the worlds first Christian nations',
-        'Smallest country in Caucasus',
+        'Smallest country in Caucasus, famous for his genocides, and diasporas',
         'Famous figures: Serj Tankian, Hovhannes Shiraz'
     ],
     'Australia': [
@@ -194,7 +223,7 @@ let map;
     'Azerbaijan': [
         'Famous for its rich history in the Caucasus region',
         'Home to the Caspian Sea and beautiful landscapes',
-        'Famous figures: Heydar Aliyev, Gulnara Karimova'
+        'Famous figures: Heydar Aliyev, Garry Kasparov, Lotfi A. Zadeh, Teimour Radjabov'
     ],
     'Bahamas': [
         'Famous for its pristine beaches and crystal-clear waters',
@@ -327,11 +356,6 @@ let map;
         'Home to the Andes mountains and the Amazon rainforest',
         'Famous figures: Shakira, Gabriel García Márquez, Juan Gabriel'
     ],
-    'Comoros': [
-        'An island nation off the coast of East Africa',
-        'Known for its beautiful beaches and volcanic landscapes',
-        'Famous figures: Ahmed Abdallah, Sambi Ikililou'
-    ],
     'Congo': [
         'Home to the Congo River, the second-longest river in Africa',
         'Known for its rainforests and wildlife, including gorillas',
@@ -427,11 +451,6 @@ let map;
         'Home to ancient civilizations, including the Kingdom of Aksum',
         'Known for its coffee, which is believed to have originated here',
         'Famous figures: Haile Selassie, Abiy Ahmed'
-    ],
-    'Fiji': [
-        'Known for its beautiful islands and coral reefs',
-        'Famous for its rugby and traditional ceremonies',
-        'Famous figures: Jone Naqica, Ratu Sir Lala Sukuna'
     ],
     'Finland': [
         'Known for its saunas and Northern Lights',
@@ -578,11 +597,6 @@ let map;
         'Known for its long-distance runners and athletics',
         'Famous figures: Jomo Kenyatta, Wangari Maathai, Eliud Kipchoge'
     ],
-    'Kiribati': [
-        'A Pacific island nation known for its coral atolls and remote location',
-        'Facing rising sea levels due to climate change',
-        'Famous figures: Anote Tong'
-    ],
     'Kuwait': [
         'Famous for its oil reserves and modern skyline',
         'Home to the Kuwait Towers and a rich cultural history',
@@ -668,11 +682,6 @@ let map;
         'Famous for its strategic location in the Mediterranean Sea',
         'Famous figures: Dom Mintoff, George Cross'
     ],
-    'Marshall Islands': [
-        'Located in the Pacific Ocean, known for its atolls and marine life',
-        'Famous for being the site of U.S. nuclear tests in the mid-20th century',
-        'Famous figures: Hilda Heine'
-    ],
     'Mauritania': [
         'Known for its desert landscapes, including the Sahara',
         'Famous for its nomadic culture and salt mines',
@@ -687,11 +696,6 @@ let map;
         'Famous for its rich history, including ancient Mayan and Aztec cultures',
         'Known for its vibrant food, including tacos, guacamole, and tequila',
         'Famous figures: Frida Kahlo, Diego Rivera, Carlos Slim'
-    ],
-    'Micronesia': [
-        'Comprising four island states in the Pacific Ocean',
-        'Known for its stunning coral reefs and World War II shipwrecks',
-        'Famous figures: Emelihter Kihleng, Peter Christian'
     ],
     'Moldova': [
         'Famous for its vineyards and wine production',
@@ -733,11 +737,6 @@ let map;
         'Known for wildlife safaris and the Etosha National Park',
         'Famous figures: Sam Nujoma, Hifikepunye Pohamba'
     ],
-    'Nauru': [
-        'A small island country in the Pacific Ocean, known for phosphate mining',
-        'Famous for its minimalistic lifestyle and remoteness',
-        'Famous figures: Baron Waqa'
-    ],
     'Nepal': [
         'Known for the Himalayas, including Mount Everest, the worlds highest peak',
         'Famous for its Buddhist heritage, including the city of Lumbini, Buddhas birthplace',
@@ -773,7 +772,7 @@ let map;
         'Famous for its military parades and the Kim family dictatorship',
         'Famous figures: Kim Il-sung, Kim Jong-il, Kim Jong-un'
     ],
-    'North Macedonia': [
+    'Macedonia': [
         'Known for its rich history and ancient ruins, including those in Ohrid',
         'Famous for its diverse mix of ethnic groups and languages',
         'Famous figures: Mother Teresa, Boris Trajkovski'
@@ -792,11 +791,6 @@ let map;
         'Known for its diverse landscapes, including the Himalayas and the Thar Desert',
         'Famous for its rich history, including the Indus Valley Civilization',
         'Famous figures: Malala Yousafzai, Imran Khan, Abdul Sattar Edhi'
-    ],
-    'Palau': [
-        'Known for its pristine coral reefs and as a popular diving destination',
-        'Famous for its tropical climate and beautiful islands',
-        'Famous figures: Tommy Remengesau Jr.'
     ],
     'Palestine': [
         'Known for its historical and religious significance, including Jerusalem',
@@ -903,11 +897,6 @@ let map;
         'Famous for its vibrant music and cultural festivals',
         'Famous figures: Novak Djokovic, Nikola Tesla'
     ],
-    'Seychelles': [
-        'Known for its beautiful beaches and granite boulders',
-        'Famous for its unique biodiversity, including giant tortoises',
-        'Famous figures: James Michel, France-Albert René'
-    ],
     'Sierra Leone': [
         'Famous for its beautiful beaches and rich cultural heritage',
         'Known for its diamond mines and history of civil conflict',
@@ -1008,20 +997,10 @@ let map;
         'Famous for its vibrant culture, including Muay Thai',
         'Famous figures: King Bhumibol Adulyadej, Somtow Sucharitkul'
     ],
-    'Timor-Leste': [
-        'Known for its recent independence in 2002, after a long struggle',
-        'Famous for its beautiful beaches and coral reefs',
-        'Famous figures: Xanana Gusmão, José Ramos-Horta'
-    ],
     'Togo': [
         'Known for its palm-lined beaches and Togo Mountains',
         'Famous for its rich culture and history of French colonial rule',
         'Famous figures: Gnassingbé Eyadéma, Emmanuelle Gattuso'
-    ],
-    'Tonga': [
-        'Known for its Polynesian culture and beautiful islands',
-        'Famous for its friendly people and traditional ceremonies',
-        'Famous figures: King Tupou VI'
     ],
     'Trinidad and Tobago': [
         'Known for its vibrant Carnival celebration',
@@ -1035,7 +1014,7 @@ let map;
     ],
     'Turkey': [
         'Famous for its rich history as the center of the Ottoman Empire',
-        'Known for landmarks like Hagia Sophia and the Blue Mosque',
+        'Known for landmarks like Hagia Sophia and the Blue Mosque, plus Tea, Coffee, Doner, Baklava and Cats',
         'Famous figures: Mustafa Kemal Atatürk, Orhan Pamuk, Hidayet Turkoglu'
     ],
     'Turkmenistan': [
@@ -1088,11 +1067,6 @@ let map;
         'Famous for its indigenous Melanesian culture',
         'Famous figures: Joe Natuman, Maxime Carlot Korman'
     ],
-    'Vatican City': [
-        'Known for being the smallest country in the world by area',
-        'Famous for being the center of the Roman Catholic Church and home to the Pope',
-        'Famous figures: Pope Francis, Michelangelo'
-    ],
     'Venezuela': [
         'Known for its vast oil reserves and political instability',
         'Famous for Angel Falls, the worlds tallest uninterrupted waterfall',
@@ -1120,6 +1094,80 @@ let map;
     ]
     
         };
+
+        // Add this near the top of your file with other global variables
+        let secretCodes = {
+            'vinlocked': () => {
+                // Skip current country in hints mode
+                if (gameMode === 'hints') {
+                    showMessage(true);
+                    currentScore += 1;
+                    document.getElementById('current-score').textContent = currentScore;
+                    startNewRound();
+                }
+            },
+            'odyssey': () => {
+                // Check if targetCountry is set
+                if (targetCountry) {
+                    geojsonLayer.eachLayer(function(layer) {
+                        const countryName = layer.feature.properties.ADMIN;
+
+                        // Check if the current layer matches the target country
+                        if (countryName === targetCountry) {
+                            layer.setStyle({
+                                fillColor: '#f1c40f',
+                                fillOpacity: 0.6
+                            });
+
+                            // Reset the style after 2 seconds
+                            setTimeout(() => {
+                                layer.setStyle({
+                                    fillColor: '#95a5a6',
+                                    fillOpacity: 0.2
+                                });
+                            }, 2000);
+                        }
+                    });
+                }
+            },
+            'imranli': () => {
+                // Add 30 seconds in time mode
+                if (gameMode === 'time' && timeLeft > 0) {
+                    timeLeft += 30;
+                    updateTimer();
+                    showMessage(true);
+                }
+            }
+        };
+
+        // Add this code to handle secret code detection
+        let currentCode = '';
+        let codeTimeout;
+
+        document.addEventListener('keydown', (e) => {
+            // Only track alphabetical keys
+            if (/^[a-zA-Z]$/.test(e.key)) {
+                currentCode += e.key.toLowerCase();
+                
+                // Check if any secret code matches
+                Object.keys(secretCodes).forEach(code => {
+                    if (currentCode.endsWith(code)) {
+                        secretCodes[code]();
+                        // Flash effect on successful code
+                        document.body.style.backgroundColor = '#f0f0f0';
+                        setTimeout(() => {
+                            document.body.style.backgroundColor = '';
+                        }, 200);
+                    }
+                });
+                
+                // Reset after 2 seconds of no input
+                clearTimeout(codeTimeout);
+                codeTimeout = setTimeout(() => {
+                    currentCode = '';
+                }, 2000);
+            }
+        });
 
         function initMap() {
             map = L.map('map-container', {
@@ -1164,9 +1212,27 @@ let map;
         function countryClick(e) {
             const layer = e.target;
             const clickedCountry = layer.feature.properties.ADMIN;
-            console.log('Clicked:', clickedCountry);
             
-            if (clickedCountry === targetCountry) {
+            // Add console.log to debug the clicked country name
+            console.log('Clicked country properties:', layer.feature.properties);
+            
+            // Create a mapping for special cases
+            const countryMapping = {
+                'United Republic of Tanzania': 'Tanzania',
+                'The former Yugoslav Republic of Macedonia': 'North Macedonia',
+                'Republic of North Macedonia': 'North Macedonia',
+                'Cape Verde': 'Cabo Verde',  // Add this line to handle the naming variation
+                "The Bahamas": "Bahamas",   
+                // Add more mappings as needed
+            };
+
+            // Get the normalized country name
+            const normalizedCountry = countryMapping[clickedCountry] || clickedCountry;
+            
+            console.log('Normalized country:', normalizedCountry);
+            console.log('Target country:', targetCountry);
+            
+            if (normalizedCountry === targetCountry) {
                 layer.setStyle({
                     fillColor: '#2ecc71',
                     fillOpacity: 0.6
@@ -1178,7 +1244,7 @@ let map;
                         fillOpacity: 0.2
                     });
                     checkAnswer({
-                        countryName: clickedCountry,
+                        countryName: normalizedCountry,
                         latlng: e.latlng
                     });
                 }, 500);
@@ -1194,7 +1260,7 @@ let map;
                         fillOpacity: 0.2
                     });
                     checkAnswer({
-                        countryName: clickedCountry,
+                        countryName: normalizedCountry,
                         latlng: e.latlng
                     });
                 }, 500);
@@ -1517,6 +1583,7 @@ let map;
                     </div>
                     
                     <button class="game-btn" onclick="showMainMenu()">Main Menu</button>
+                   
                 </div>
             `;
 
@@ -1676,6 +1743,16 @@ let map;
             "WORLD MASTER! 🌎",
             "ABSOLUTELY INCREDIBLE! 🔥",
             "ULTRA RARE FIND! ⭐",
+            "MAP WIZARD IN THE HOUSE! 🗺️✨",
+            "BIG BRAIN ENERGY! 🧠⚡",
+            "EARTH EXPLORER LEVEL 100! 🌏🎮",
+            "NEXT-LEVEL GENIUS! 🚀🔥",
+            "EPIC WINNER VIBES! 🏆🌟",
+            "LEGENDARY DISCOVERY UNLOCKED! 🔓✨",
+            "CHAMPION OF THE WORLD! 🌎💪",
+            "BOSS MODE ACTIVATED! 👑⚡",
+            "RARE GEM SPOTTED! 💎🌟",
+            "ABSOLUTE ICON! 🔥🌍",
         ];
 
         // Add hint-specific success messages
@@ -1684,7 +1761,17 @@ let map;
             "Puzzle Master! 🧩",
             "Brilliant Deduction! 🎯",
             "Geography Sleuth! 🗺️",
-            "Case Solved! 🔎"
+            "Case Solved! 🔎",
+            "Clue Finder Extraordinaire! 💡",
+            "Sharp as a Tack! 🦊",
+            "Investigation Complete! ✅",
+            "Mystery Unlocked! 🔓",
+            "Trailblazer Award! 🛤️",
+            "Map Detective! 🗺️🔍",
+            "Nothing Escapes You! 🕵️‍♂️",
+            "Piece of the Puzzle Found! 🧩✨",
+            "Perfect Guess! 🎉",
+            "Mind Games Champion! 🏆🧠"
         ];
 
         // Initialize with game modes view
@@ -1716,6 +1803,7 @@ let map;
             document.getElementById('game-overlay').classList.add('hidden');
             document.getElementById('menu-btn').classList.remove('hidden');
             document.getElementById('finish-btn').classList.remove('hidden');
+            document.getElementById('feedback-btn').classList.remove('hidden');
             
             // Reset country pools
             usedCountries.clear();
