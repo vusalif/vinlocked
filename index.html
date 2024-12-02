@@ -108,6 +108,7 @@
 
         .credit {
             position: fixed;
+            cursor: wait;
             bottom: 20px;
             font-size: 1rem;
             color: #666;
@@ -151,7 +152,7 @@
     </style>
 </head>
 <body>
-    <h1 class="site-title">vinlocked.games</h1>
+    <h1 class="site-title">my game library</h1>
 
     <div class="cards-container">
         <div class="game-card">
@@ -179,7 +180,16 @@
         </div>
     </div>
 
-    <div class="credit">made by <span><a href="https://read.cv/imranli" target="_blank">vusal</a></span></div>
+    <div class="credit">made by <span><a>vusal</a></span></div>
+
+    <div style="display: none;">
+        <audio id="preloaded-music1" preload="auto">
+            <source src="music1.mp3" type="audio/mp3">
+        </audio>
+        <audio id="preloaded-music2" preload="auto">
+            <source src="music2.mp3" type="audio/mp3">
+        </audio>
+    </div>
 
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

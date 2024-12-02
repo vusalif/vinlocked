@@ -30,6 +30,8 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: #2c3e50;
+    margin: 20px 0;
+    display: block;
 }
 .country {
     fill-opacity: 0.2;
@@ -130,6 +132,8 @@ body {
 
 .hidden {
     display: none !important;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #game-modes {
@@ -274,28 +278,24 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.hint-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+.hint-btn, .surrender-btn {
+    display: none;
     padding: 10px 20px;
     font-size: 16px;
-    background: #3498db;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 9999;  /* Increased z-index */
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.hint-btn:hover {
+.hint-btn:hover, .surrender-btn:hover {
     background: #2980b9;
     transform: scale(1.05);
 }
 
-.hint-btn:disabled {
+.hint-btn:disabled, .surrender-btn:disabled {
     background: #95a5a6;
     cursor: not-allowed;
     transform: none;
@@ -327,37 +327,9 @@ body {
 }
 
 .hints-left {
-    position: fixed;
-    bottom: 20px;
-    right: 140px;
-    color: #7f8c8d;
-    font-size: 14px;
-    z-index: 9999;
-    display: none;  /* Hidden by default */
+    display: none;
 }
 
-.surrender-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 200px;  /* Positioned to the left of hint button */
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #e74c3c;  /* Red color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 9999;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.surrender-btn:hover {
-    background: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Add style for surrendered country */
 .surrendered {
     fill: #f1c40f !important;  /* Yellow color */
     fill-opacity: 0.6 !important;
@@ -418,4 +390,90 @@ body {
     text-align: center;
     font-size: 13px;
     color: #000000;
+}
+
+/* Add new container for hint controls */
+.hint-controls {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.hint-btn {
+    background: #3498db !important;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: inline-block !important;
+}
+
+.documentation-link {
+    font-size: 16px; 
+    font-family: Inter, sans-serif;
+    font-weight: 300; 
+    position: relative; 
+    bottom: 10px; 
+    cursor: pointer;
+}
+
+.documentation-link:hover{
+    color: #a13636;
+    font-weight: 900;
+    transition: 0.5s;
+}
+    
+
+.surrender-btn {
+    background: #db3434 !important;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: inline-block !important;
+}
+
+/* Remove these buttons from hidden class control */
+.hint-btn.hidden,
+.surrender-btn.hidden {
+    display: inline-block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.new-tag {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    background: #ff3e3e;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: rotate(15deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: rotate(15deg) scale(1); }
+    50% { transform: rotate(15deg) scale(1.1); }
+    100% { transform: rotate(15deg) scale(1); }
+}
+
+/* Add these styles for the feedback image */
+img[alt="Feedback"] {
+    cursor: pointer;
 }

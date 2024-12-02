@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Viga&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Country - Odyssey</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -24,13 +28,18 @@
     font-size: 2rem;
     font-weight: 900;">Country - Odyssey</h1>
     <div id="game-controls"></div>
-    <div id="target-country">Find: <span id="country-to-find"></span></div>
-    <div id="score">Score: <span id="current-score">0</span></div>
     <div id="map-container"></div>
+    <div id="target-country">Find: <span id="country-to-find"></span></div>
+    <div class="hint-controls">
+        <button id="hint-btn" class="hint-btn" onclick="showHint()">Get Hint (2)</button>
+        <button id="surrender-btn" class="surrender-btn" onclick="surrenderHint()">Surrender</button>
+    </div>
+    <div id="score">Score: <span id="current-score">0</span></div>
     <div id="message-container"></div>
     <div id="game-overlay">
         <div id="start-menu">
-            <h2>Select Game Mode</h2>
+            <h2 style="font-size: 36px; font-weight: 800;">Select Game Mode</h2>
+            <a class="documentation-link" style="font-size: 18px; font-weight: 350; position: relative; top: -15px; cursor: pointer;" href="documention.html" target="_blank">📄</a>
             <div id="game-modes">
                 <div class="mode-card" onclick="showDifficultySelect('time')">
                     <div class="mode-title">Against Time ⏱️</div>
@@ -49,8 +58,18 @@
                     <div class="mode-description">How many countries can you find in a row without mistakes?</div>
                 </div>
                 <div class="mode-card" onclick="showDifficultySelect('hints')">
-                    <div class="mode-title">Hints Mode 💡</div>
+                    <div class="mode-title" style="position: relative;">
+                        <span class="new-tag" style="background: #2ecc71;">POPULAR</span>
+                        Hints Mode 💡
+                    </div>
                     <div class="mode-description">Use hints wisely to find countries! Limited hints per game.</div>
+                </div>
+                <div class="mode-card" onclick="redirectToMultiplayer()">
+                    <div class="mode-title" style="position: relative;">
+                        <span class="new-tag">NEW</span>
+                        Multiplayer Mode 🎮
+                    </div>
+                    <div class="mode-description">Challenge your friends in real-time geography battles!</div>
                 </div>
             </div>
             <div id="difficulty-select" class="difficulty-select">
@@ -81,21 +100,32 @@
         Feedback & Suggestions & Report Bugs
     </a>
 
-    <div id="timer">Time: 3:00</div>
+    <div id="timer" class="hidden">Time: 3:00</div>
 
     <div id="streak-counter" class="streak-counter hidden">Current Streak: <span id="current-streak">0</span></div>
     <div id="best-streak" class="best-streak hidden">Best Streak: <span id="max-streak">0</span></div>
 
-    <button id="hint-btn" class="hint-btn hidden" onclick="showHint()">Get Hint (2)</button>
     <div id="hint-container" class="hint-container">
         <p id="hint-text" class="hint-text"></p>
     </div>
-    <div class="hints-left">Hints remaining: 2</div>
-
-    <!-- Add this button next to the hint button -->
-    <button id="finish-btn" class="game-btn hidden" onclick="finishGame()">End Game</button>
-    <button id="surrender-btn" class="surrender-btn hidden" onclick="surrenderHint()">Surrender</button>
 
     <script src="game.js"></script>
+    <div style="display: none;" id="audio-container">
+        <audio id="preloaded-music1" preload="auto">
+            <source src="music1.mp3" type="audio/mp3">
+        </audio>
+        <audio id="preloaded-music2" preload="auto">
+            <source src="music2.mp3" type="audio/mp3">
+        </audio>
+        <audio id="preloaded-music3" preload="auto">
+            <source src="music3.mp3" type="audio/mp3">
+        </audio>
+        <audio id="preloaded-music4" preload="auto">
+            <source src="music4.mp3" type="audio/mp3">
+        </audio>
+        <audio id="preloaded-music5" preload="auto">
+            <source src="music5.mp3" type="audio/mp3">
+        </audio>
+    </div>
 </body>
 </html>

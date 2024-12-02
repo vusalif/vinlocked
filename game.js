@@ -24,29 +24,31 @@ let map;
         'Italy', 'Germany', 'Japan', 'Spain', 'Mexico', 'Argentina', 'Saudi Arabia',
         'Turkey', 'South Korea', 'Austria', 'Belgium', 'Switzerland', 'Ireland',
         'Portugal', 'Greece', 'Sweden', 'Netherlands', 'Denmark', 'New Zealand',
-        'Norway', 'Poland', 'Azerbaijan','Thailand', 'Vietnam', 'Indonesia', 'Pakistan'
+        'Norway', 'Poland', 'Azerbaijan','Thailand', 'Vietnam', 'Indonesia', 'Pakistan', 
+        'Singapore', 'Iran', 'Georgia'
     ],
     normal: [
         'Ukraine', 'Cuba', 'Venezuela', 'Colombia', 'Malaysia', 'Myanmar', 
         'Iraq', 'Chile', 'Kazakhstan', 'Romania', 'Peru', 'Morocco', 'Algeria', 
         'Ethiopia', 'Kenya', 'Afghanistan', 'Armenia', 'Belarus', 'Bolivia', 
-        'Bosnia and Herzegovina', 'Botswana', 'Bulgaria', 'Croatia', 'Georgia', 
+        'Bosnia and Herzegovina', 'Botswana', 'Bulgaria', 'Croatia', 
         'Hungary', 'Jordan', 'Lebanon', 'Lithuania', 'Madagascar', 'Moldova', 
         'Serbia', 'Slovakia', 'Slovenia', 'Tanzania', 'Uganda', 'Uzbekistan', 
-        'Zambia', 'Zimbabwe', 'Malawi', 'Rwanda', 'Paraguay', 'Eswatini', 
-        'Mozambique', 'Bangladesh', 'Philippines', 'South Sudan'
+        'Zambia', 'Zimbabwe', 'Malawi', 'Rwanda', 'Paraguay', 'Eswatini', 'Estonia',
+        'Czech Republic', 'Iceland', 'Montenegro', 'Panama', 'Latvia',
+        'Mozambique', 'Bangladesh', 'Philippines', 'South Sudan', 'Uruguay', 'Israel'
     ],
     hard: [
-        'Uruguay', 'Tunisia', 'Cambodia', 'Laos', 'Nepal', 'Mongolia', 
+        'Tunisia', 'Cambodia', 'Laos', 'Nepal', 'Mongolia', 
         'Qatar', 'Kuwait', 'Bahrain', 'Bhutan', 'Brunei', 
         'Djibouti', 'Burundi', 'Saint Kitts and Nevis', 'Dominica', 
         'Saint Lucia', 'Grenada', 'Barbados', 'Antigua and Barbuda', 
         'Malta', 'Liechtenstein', 'Andorra', 'Monaco', 'San Marino', 
-        'Benin', 'Cape Verde', 'Chad', 'Equatorial Guinea', 
-        'Eritrea', 'Gabon', 'Gambia', 'Guinea', 'Guinea-Bissau', 
-        'Kosovo', 'Liberia', 'Maldives', 'Mauritania', 
+        'Benin', 'Cape Verde', 'Chad', 'Equatorial Guinea', 'Luxembourg',
+        'Eritrea', 'Gabon', 'Gambia', 'Guinea', 'Guinea-Bissau', 'Jamaica',
+        'Kosovo', 'Liberia', 'Maldives', 'Mauritania', 'Guatemala',
         'Mauritius', 'Namibia', 'Papua New Guinea', 'Solomon Islands', 
-        'Suriname', 'Tajikistan', 'Togo', 
+        'Suriname', 'Tajikistan', 'Togo', 'Honduras', 'Haiti', 'Ecuador',
         'Trinidad and Tobago', 'Turkmenistan', 'Vanuatu', 'Lesotho', 
         'Eswatini'
     ],
@@ -60,7 +62,7 @@ let map;
         'Congo', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
         'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominica',
         'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea',
-        'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Finland', 'France',
+        'Eritrea', 'Eswatini', 'Ethiopia', 'Finland', 'France',
         'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada',
         'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras',
         'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland',
@@ -359,7 +361,7 @@ let map;
     'Congo': [
         'Home to the Congo River, the second-longest river in Africa',
         'Known for its rainforests and wildlife, including gorillas',
-        'Famous figures: Denis Sassou Nguesso, Jean-Pierre Bemba'
+        'Famous figures: Denis Sassou Nguesso, Joseph Kabila'
     ],
     'Costa Rica': [
         'Known for its biodiversity and eco-tourism',
@@ -1097,7 +1099,7 @@ let map;
 
         // Add this near the top of your file with other global variables
         let secretCodes = {
-            'vinlocked': () => {
+            'mordecai': () => {
                 // Skip current country in hints mode
                 if (gameMode === 'hints') {
                     showMessage(true);
@@ -1136,6 +1138,236 @@ let map;
                     timeLeft += 30;
                     updateTimer();
                     showMessage(true);
+                }
+            },
+            'geosong': () => {
+                // Create and show music player
+                const playerHtml = `
+                    <div id="audio-container" style="display: none;">
+                        <audio id="audio-player">
+                            <source src="music1.mp3" type="audio/mp3">
+                        </audio>
+                    </div>
+                    <div id="music-player" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+                        background: rgba(33, 33, 33, 0.95); padding: 15px 20px; border-radius: 15px; 
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; width: 600px; 
+                        font-family: Inter, sans-serif; color: white; transition: all 0.3s ease;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin: 0; font-size: 16px; color: #fff;">
+                                <svg style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="#64B5F6">
+                                    <path d="M9 18V5l12-2v13" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="6" cy="18" r="3" stroke-width="2"/>
+                                    <circle cx="21" cy="16" r="3" stroke-width="2"/>
+                                </svg>
+                                GeoSongs - CountryOdyssey Radio
+                            </h3>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <button id="minimize-btn" onclick="toggleMinimize()" style="background: none; border: none; cursor: pointer; 
+                                    font-size: 18px; color: #64B5F6; padding: 5px; transition: transform 0.3s ease;">
+                                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M19 13H5v-2h14v2z" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                                <button onclick="closePlayer()" style="background: none; border: none; cursor: pointer; 
+                                    font-size: 18px; color: #64B5F6; padding: 5px;">
+                                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="player-content" style="transition: all 0.3s ease; overflow: hidden;">
+                            <select id="song-select" onchange="changeSong()" 
+                                style="width: 100%; margin: 10px 0; padding: 6px; border-radius: 8px; 
+                                background: #333; color: white; border: 1px solid #444;">
+                                <option value="music1.mp3">Better than yesterday</option>
+                                <option value="music2.mp3">Atlas Pulse</option>
+                                <option value="music3.mp3">Chill Lofi</option>
+                                <option value="music4.mp3">Jazz Cafe</option>
+                                <option value="music5.mp3">Sphagetti</option>
+                            </select>
+                            
+                            <div style="margin: 10px 0;">
+                                <input type="range" id="duration-slider" min="0" value="0" step="1" 
+                                    style="width: 100%; margin: 5px 0; accent-color: #64B5F6; height: 4px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #888;">
+                                    <span id="current-time">0:00</span>
+                                    <span id="total-duration">0:00</span>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; justify-content: center; gap: 30px; margin: 10px 0;">
+                                <button onclick="previousSong()" style="background: none; border: none; color: #64B5F6; 
+                                    cursor: pointer;">
+                                    <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                                    </svg>
+                                </button>
+                                <button id="play-pause-btn" onclick="togglePlay()" style="background: none; border: none; 
+                                    color: #64B5F6; cursor: pointer;">
+                                    <svg style="width: 28px; height: 28px;" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" id="play-icon"/>
+                                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" id="pause-icon" style="display: none;"/>
+                                    </svg>
+                                </button>
+                                <button onclick="nextSong()" style="background: none; border: none; color: #64B5F6; 
+                                    cursor: pointer;">
+                                    <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                                <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="#64B5F6">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                                </svg>
+                                <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5" 
+                                    style="width: 80px; accent-color: #64B5F6; height: 3px;" onchange="updateVolume(this.value)">
+                                <span id="volume-label" style="color: #888; font-size: 11px;">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Remove existing player if present
+                const existingPlayer = document.getElementById('music-player');
+                if (existingPlayer) {
+                    existingPlayer.remove();
+                }
+
+                // Add player to document
+                document.body.insertAdjacentHTML('beforeend', playerHtml);
+
+                // Initialize audio player
+                const audio = document.getElementById('audio-player');
+                const durationSlider = document.getElementById('duration-slider');
+                audio.volume = 0.5;
+
+                // Define all functions in the global scope
+                window.closePlayer = function() {
+                    const player = document.getElementById('music-player');
+                    const audioContainer = document.getElementById('audio-container');
+                    if (player && audioContainer) {
+                        audio.pause();
+                        player.remove();
+                        audioContainer.remove();
+                    }
+                };
+
+                window.changeSong = function() {
+                    const select = document.getElementById('song-select');
+                    audio.src = select.value;
+                    audio.play().then(() => {
+                        const playIcon = document.querySelector('#play-icon');
+                        const pauseIcon = document.querySelector('#pause-icon');
+                        if (playIcon && pauseIcon) {
+                            playIcon.style.display = 'none';
+                            pauseIcon.style.display = 'block';
+                        }
+                    }).catch(error => console.error('Error playing audio:', error));
+                };
+
+                window.togglePlay = function() {
+                    const playIcon = document.querySelector('#play-icon');
+                    const pauseIcon = document.querySelector('#pause-icon');
+                    
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            if (playIcon && pauseIcon) {
+                                playIcon.style.display = 'none';
+                                pauseIcon.style.display = 'block';
+                            }
+                        }).catch(error => console.error('Error playing audio:', error));
+                    } else {
+                        audio.pause();
+                        if (playIcon && pauseIcon) {
+                            playIcon.style.display = 'block';
+                            pauseIcon.style.display = 'none';
+                        }
+                    }
+                };
+
+                window.previousSong = function() {
+                    const select = document.getElementById('song-select');
+                    const currentIndex = select.selectedIndex;
+                    select.selectedIndex = currentIndex > 0 ? currentIndex - 1 : select.options.length - 1;
+                    changeSong();
+                };
+
+                window.nextSong = function() {
+                    const select = document.getElementById('song-select');
+                    const currentIndex = select.selectedIndex;
+                    select.selectedIndex = currentIndex < select.options.length - 1 ? currentIndex + 1 : 0;
+                    changeSong();
+                };
+
+                window.updateVolume = function(value) {
+                    const label = document.getElementById('volume-label');
+                    if (audio && label) {
+                        audio.volume = value;
+                        label.textContent = `${Math.round(value * 100)}%`;
+                    }
+                };
+
+                window.toggleMinimize = function() {
+                    const player = document.getElementById('music-player');
+                    const content = document.getElementById('player-content');
+                    const minimizeBtn = document.getElementById('minimize-btn');
+                    const isMinimized = content.style.maxHeight === '0px';
+
+                    if (!isMinimized) {
+                        content.style.maxHeight = '0px';
+                        content.style.marginTop = '0px';
+                        minimizeBtn.style.transform = 'rotate(180deg)';
+                        player.style.background = 'rgba(33, 33, 33, 0.85)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.marginTop = '15px';
+                        minimizeBtn.style.transform = 'rotate(0deg)';
+                        player.style.background = 'rgba(33, 33, 33, 0.95)';
+                    }
+                };
+
+                // Add event listeners
+                audio.addEventListener('timeupdate', function() {
+                    const durationSlider = document.getElementById('duration-slider');
+                    const currentTimeSpan = document.getElementById('current-time');
+                    if (durationSlider && currentTimeSpan) {
+                        durationSlider.value = audio.currentTime;
+                        currentTimeSpan.textContent = formatTime(audio.currentTime);
+                    }
+                });
+
+                audio.addEventListener('loadedmetadata', function() {
+                    const durationSlider = document.getElementById('duration-slider');
+                    const totalDurationSpan = document.getElementById('total-duration');
+                    if (durationSlider && totalDurationSpan) {
+                        durationSlider.max = audio.duration;
+                        totalDurationSpan.textContent = formatTime(audio.duration);
+                    }
+                });
+
+                durationSlider.addEventListener('input', function() {
+                    if (audio) {
+                        audio.currentTime = this.value;
+                    }
+                });
+
+                // Initialize content height
+                setTimeout(() => {
+                    const content = document.getElementById('player-content');
+                    if (content) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.marginTop = '15px';
+                    }
+                }, 0);
+
+                // Helper function to format time
+                function formatTime(seconds) {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = Math.floor(seconds % 60);
+                    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
                 }
             }
         };
@@ -1222,7 +1454,9 @@ let map;
                 'The former Yugoslav Republic of Macedonia': 'North Macedonia',
                 'Republic of North Macedonia': 'North Macedonia',
                 'Cape Verde': 'Cabo Verde',  // Add this line to handle the naming variation
-                "The Bahamas": "Bahamas",   
+                "The Bahamas": "Bahamas",    
+                "Republic of Serbia": "Serbia",
+                "Republic of the Congo": "Congo",
                 // Add more mappings as needed
             };
 
@@ -1457,17 +1691,23 @@ let map;
             if (gameMode === 'hints') {
                 // Reset hints for new country
                 hintsRemaining = 2; // 2 remaining hints since we show the first one
+                
+                // Get hints for the country
+                const hints = countryHints[targetCountry];
+                if (!hints) {
+                    console.error('No hints available for:', targetCountry);
+                    return;
+                }
+                
+                // Show first hint with clear formatting
+                document.getElementById('country-to-find').innerHTML = `
+                    <div style="font-size: 24px; margin-bottom: 10px;">🔍 Find this country:</div>
+                    <div class="hint" style="font-size: 13px; color: #666; margin-top: 10px; padding: 5px;">
+                        Hint 1: ${hints[0]}
+                    </div>
+                `;
+                
                 updateHintButton();
-                
-                // Show first hint
-                const hints = countryHints[targetCountry] || [
-                    'A country waiting to be discovered',
-                    'Keep exploring!',
-                    'You\'re getting closer!'
-                ];
-                
-                document.getElementById('country-to-find').innerHTML = 
-                    `<div style="font-size: 16px; color: #666;">${hints[0]}</div>`;
             } else {
                 // For all other modes, show the country name
                 document.getElementById('country-to-find').textContent = targetCountry;
@@ -1713,9 +1953,19 @@ let map;
                         <div class="mode-description">How many countries can you find in a row without mistakes?</div>
                     </div>
                     <div class="mode-card" onclick="showDifficultySelect('hints')">
-                        <div class="mode-title">Hints Mode 💡</div>
-                        <div class="mode-description">Use hints wisely to find countries! Limited hints per game.</div>
+                    <div class="mode-title" style="position: relative;" >
+                        <span class="new-tag" style="background: #2ecc71;">POPULAR</span>
+                        Hints Mode 💡
                     </div>
+                    <div class="mode-description">Use hints wisely to find countries! Limited hints per game.</div>
+                    </div>
+                    <div class="mode-card" onclick="redirectToMultiplayer()">
+                    <div class="mode-title" style="position: relative;">
+                        <span class="new-tag">NEW</span>
+                        Multiplayer Mode 🎮
+                    </div>
+                    <div class="mode-description">Challenge your friends in real-time geography battles!</div>
+                </div>
                 </div>
                 <div id="difficulty-select" class="difficulty-select">
                     <button class="back-btn" onclick="showGameModes()">←</button>
@@ -1747,7 +1997,7 @@ let map;
             "BIG BRAIN ENERGY! 🧠⚡",
             "EARTH EXPLORER LEVEL 100! 🌏🎮",
             "NEXT-LEVEL GENIUS! 🚀🔥",
-            "EPIC WINNER VIBES! 🏆🌟",
+            "EPIC WINNER VIBES! 🏆��",
             "LEGENDARY DISCOVERY UNLOCKED! 🔓✨",
             "CHAMPION OF THE WORLD! 🌎💪",
             "BOSS MODE ACTIVATED! 👑⚡",
@@ -1757,7 +2007,7 @@ let map;
 
         // Add hint-specific success messages
         const hintSuccessMessages = [
-            "Detective Skills: 100% 🔍",
+            "Detective Skills: 100% ",
             "Puzzle Master! 🧩",
             "Brilliant Deduction! 🎯",
             "Geography Sleuth! 🗺️",
@@ -1783,11 +2033,9 @@ let map;
                 gameMode = storedMode;
                 difficulty = storedDifficulty;
                 
-                // Clear storage so it doesn't auto-start next time
                 localStorage.removeItem('selectedGameMode');
                 localStorage.removeItem('selectedDifficulty');
                 
-                // Start the game with stored settings
                 startGameWithoutRefresh(storedDifficulty);
             }
         }
@@ -1799,6 +2047,10 @@ let map;
             currentScore = 0;
             correctAttempts = 0;
             incorrectAttempts = 0;
+            
+            // Hide hint controls and timer by default
+            document.querySelector('.hint-controls').style.display = 'none';
+            document.getElementById('timer').classList.add('hidden');
             
             document.getElementById('game-overlay').classList.add('hidden');
             document.getElementById('menu-btn').classList.remove('hidden');
@@ -1816,24 +2068,29 @@ let map;
             }
             
             if (gameMode === 'hints') {
-                document.getElementById('timer').textContent = 'Hints Mode - Score: 0';
                 document.getElementById('current-score').textContent = '0';
-                document.getElementById('hint-btn').classList.add('hidden');
+                document.querySelector('.hint-controls').style.display = 'flex';
                 
                 // Select initial country and hint
                 const randomCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)];
                 targetCountry = randomCountry;
                 usedCountries.add(randomCountry);
                 
-                // Get hints for the country
-                const hints = countryHints[targetCountry] || generateDefaultHint(targetCountry);
-                const randomHint = hints[Math.floor(Math.random() * hints.length)];
+                // Get hints for the country and make sure we have valid hints
+                const hints = countryHints[targetCountry];
+                if (!hints || hints.length === 0) {
+                    console.error('No hints found for country:', targetCountry);
+                    return;
+                }
                 
-                // Display the hint
+                // Display the first hint
+                const firstHint = hints[0];
                 document.getElementById('country-to-find').innerHTML = `
-                    <div style="font-size: 24px; margin-bottom: 10px;">🔍 Find this country:</div>
-                    <div style="font-style: italic; color: #666;">"${randomHint}"</div>
+                    <div style="font-size: 13px; color: #666; font-style: bold; margin-top: 10px;">${firstHint}</div>
                 `;
+                
+                hintsRemaining = 2;
+                updateHintButton();
             } else if (gameMode === 'streak') {
                 currentStreak = 0;
                 bestStreak = 0;
@@ -1841,64 +2098,44 @@ let map;
                 document.getElementById('best-streak').classList.remove('hidden');
                 document.getElementById('current-streak').textContent = currentStreak;
                 document.getElementById('max-streak').textContent = bestStreak;
-                document.getElementById('timer').textContent = 'Streak Mode';
                 document.getElementById('current-score').textContent = currentStreak;
                 startNewRound();
             } else if (gameMode === 'alphabetic') {
                 alphabeticIndex = 0;
                 sortedCountries = [...countries[selectedDifficulty]].sort();
                 targetCountry = sortedCountries[0];
-                document.getElementById('timer').textContent = 'Alphabetic Mode';
                 document.getElementById('current-score').textContent = `0/${sortedCountries.length}`;
                 document.getElementById('country-to-find').innerHTML = `
                     ${targetCountry}
                     <div id="next-country">Next: ${sortedCountries[1] || 'Last country!'}</div>
                 `;
             } else if (gameMode === 'time') {
-                timeLeft = 180; // 3 minutes
-                document.getElementById('timer').textContent = 'Time: 3:00';
+                // Set timer based on difficulty
+                const timerSettings = {
+                    'easy': 180,    // 3 minutes
+                    'normal': 420,  // 7 minutes
+                    'hard': 900,    // 15 minutes
+                    'ultra': 1800   // 30 minutes
+                };
+                
+                timeLeft = timerSettings[selectedDifficulty];
+                document.getElementById('timer').classList.remove('hidden');
+                
+                // Format initial timer display
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = 
+                    `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
                 document.getElementById('current-score').textContent = '0';
                 startTimer();
                 startNewRound();
             } else {
-                document.getElementById('timer').textContent = 'Find All Countries';
                 document.getElementById('current-score').textContent = `0/${countries[selectedDifficulty].length}`;
                 startNewRound();
             }
             
             map.setZoom(difficultyZoom[selectedDifficulty]);
-            
-            const hintBtn = document.getElementById('hint-btn');
-            if (gameMode === 'hints') {
-                console.log('Showing hint button'); // Debug log
-                hintBtn.style.display = 'block';  // Explicitly set display
-                hintBtn.classList.remove('hidden');
-                hintsRemaining = 2;
-                updateHintButton();
-                document.getElementById('timer').textContent = 'Hints Mode';
-            } else {
-                hintBtn.style.display = 'none';  // Explicitly set display
-                hintBtn.classList.add('hidden');
-            }
-            
-            const surrenderBtn = document.getElementById('surrender-btn');
-            if (gameMode === 'hints') {
-                surrenderBtn.classList.remove('hidden');
-            } else {
-                surrenderBtn.classList.add('hidden');
-            }
-            
-            const hintsLeftText = document.querySelector('.hints-left');
-            if (gameMode === 'hints') {
-                hintsLeftText.style.display = 'block';  // Show in hints mode
-                hintBtn.classList.remove('hidden');
-                hintsRemaining = 2;
-                updateHintButton();
-                document.getElementById('timer').textContent = 'Hints Mode';
-            } else {
-                hintsLeftText.style.display = 'none';  // Hide in other modes
-                hintBtn.classList.add('hidden');
-            }
         }
 
         function showStreakMessage(isSuccess) {
@@ -1933,20 +2170,25 @@ let map;
         function showHint() {
             if (hintsRemaining <= 0) return;
             
-            const hints = countryHints[targetCountry] || [
-                'A country waiting to be discovered',
-                'Keep exploring!',
-                'You\'re getting closer!'
-            ];
+            const hints = countryHints[targetCountry];
+            if (!hints) {
+                console.error('No hints available for:', targetCountry);
+                return;
+            }
             
-            // Get next hint (hint index is 3 - hintsRemaining)
+            // Calculate which hint to show (3 - hintsRemaining gives us hint index 1, then 2)
             const hintIndex = 3 - hintsRemaining;
-            const currentHint = hints[hintIndex];
             
             // Add new hint while keeping previous hints
             const targetElement = document.getElementById('country-to-find');
-            targetElement.innerHTML += 
-                `<div style="font-size: 16px; color: #666; margin-top: 8px;">${currentHint}</div>`;
+            const newHintHtml = `
+                <div class="hint" style="font-size: 13px; color: #666; margin-top: 10px; padding: 5px;">
+                    Hint ${hintIndex + 1}: ${hints[hintIndex]}
+                </div>
+            `;
+            
+            // Append the new hint after existing content
+            targetElement.innerHTML += newHintHtml;
             
             hintsRemaining--;
             updateHintButton();
@@ -1954,10 +2196,16 @@ let map;
 
         function updateHintButton() {
             const hintBtn = document.getElementById('hint-btn');
+            const hintText = document.querySelector('.hints-left');
+            
             if (hintBtn) {
                 hintBtn.textContent = `Get Hint (${hintsRemaining})`;
                 hintBtn.disabled = hintsRemaining <= 0;
-                document.querySelector('.hints-left').textContent = `Hints remaining: ${hintsRemaining}`;
+                hintBtn.style.opacity = hintsRemaining <= 0 ? '0.5' : '1';
+                
+                if (hintText) {
+                    hintText.textContent = `Hints remaining: ${hintsRemaining}`;
+                }
             }
         }
 
@@ -2004,4 +2252,12 @@ let map;
             setTimeout(() => {
                 finishGame();
             }, 2000);
+        }
+
+        function redirectToMultiplayer() {
+            // Open Country Odyssey website in a new tab
+            window.open('https://countryodyssey.onrender.com/', '_blank');
+            
+            // Log for debugging
+            console.log('Opening Country Odyssey multiplayer in new tab...');
         }
