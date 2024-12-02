@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icon2.png">
     <title>made by vusal</title>
     <style>
         body {
@@ -84,18 +85,45 @@
         }
 
         .action-button {
-            background: #69b374;
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            width: 80%;
-            border-radius: 8px;
-            font-size: 1.2rem;
+            all: unset;
+            position: relative;
+            border: 1px solid rgb(255 255 255 / .12);
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 20px;
+            background-color: #2b2b2b;
+            color: #dcdadb;
+            -webkit-mask-image: -webkit-radial-gradient(#fff, #000);
+            mask-image: radial-gradient(#fff, #000);
             cursor: pointer;
-            text-decoration: none;
-            display: block;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
             margin: 0 auto;
+            font-family: 'Inter', sans-serif;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .action-button::after {
+            content: '';
+            position: absolute;
+            top: var(--y);
+            left: var(--x);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            width: 5em;
+            height: 5em;
+            background-image: conic-gradient(#00f, #0ff, #0f0, #ff0, #f00, #f0f, #00f);
+            filter: blur(14px);
+            mix-blend-mode: overlay;
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+            pointer-events: none;
+        }
+
+        .action-button:hover::after {
+            opacity: .4;
         }
 
         .unavailable-button {
@@ -108,7 +136,7 @@
 
         .credit {
             position: fixed;
-            cursor: wait;
+            cursor: pointer;
             bottom: 20px;
             font-size: 1rem;
             color: #666;
@@ -162,22 +190,9 @@
             </h2>
             <p class="game-subtitle">think u know countries? prove it!</p>
             <img src="gifreal.gif" alt="World Map" style="width: 100%; height: 300px; object-fit: cover; margin-bottom: 1rem;">
-            <a href="countryFinder.html" class="action-button">do it.</a>
+            <a href="countryFinder.html" target="_blank" class="action-button">launch</a>
         </div>
 
-        <div class="game-card">
-            <h2 class="game-title">something is coming</h2>
-            <p class="game-subtitle">patience, legends—it's worth it! </p>
-            <div class="map-preview"></div>
-            <button class="action-button unavailable-button">unavailable</button>
-        </div>
-
-        <div class="game-card">
-            <h2 class="game-title">not discovered. but soon</h2>
-            <p class="game-subtitle">still in the lab...</p>
-            <div class="map-preview"></div>
-            <button class="action-button unavailable-button">unavailable</button>
-        </div>
     </div>
 
     <div class="credit">made by <span><a>vusal</a></span></div>
@@ -193,6 +208,13 @@
 
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        document.querySelector('.action-button').addEventListener('mousemove', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.target.style.setProperty('--x', x + 'px');
+            e.target.style.setProperty('--y', y + 'px');
+        });
       </script>
       <script defer src="/_vercel/insights/script.js"></script>
 </body>

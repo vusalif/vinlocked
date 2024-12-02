@@ -1,22 +1,24 @@
+// Add this at the top of the file with other global variables (before the countries object)
 let map;
-        let currentScore = 0;
-        let targetCountry = '';
-        let difficulty = 'normal';
-        let geojsonLayer;
-        let gameTimer;
-        let timeLeft;
-        let isGameActive = false;
-        let usedCountries = new Set();
-        let availableCountries = [];
-        let gameMode = 'time';
-        let foundCountries = new Set();
-        let correctAttempts = 0;
-        let incorrectAttempts = 0;
-        let alphabeticIndex = 0;
-        let sortedCountries = [];
-        let currentStreak = 0;
-        let bestStreak = 0;
-        
+let currentScore = 0;
+let targetCountry = '';
+let difficulty = 'normal';
+let geojsonLayer;
+let gameTimer;
+let timeLeft;
+let isGameActive = false;
+let usedCountries = new Set();
+let availableCountries = [];
+let gameMode = 'time';
+let foundCountries = new Set();
+let correctAttempts = 0;
+let incorrectAttempts = 0;
+let alphabeticIndex = 0;
+let sortedCountries = [];
+let currentStreak = 0;
+let bestStreak = 0;
+let isChristmasActive = false;  // Add this line
+
         const countries = {
             easy: [
         'United States of America', 'Canada', 'Brazil', 'Russia', 'China',
@@ -209,7 +211,7 @@ let map;
     ],
     'Armenia': [
         'One of the worlds first Christian nations',
-        'Smallest country in Caucasus, famous for his genocides, and diasporas',
+        'Smallest country in Caucasus, famous for genocides, and diasporas',
         'Famous figures: Serj Tankian, Hovhannes Shiraz'
     ],
     'Australia': [
@@ -1097,8 +1099,369 @@ let map;
     
         };
 
-        // Add this near the top of your file with other global variables
+        // Add this near the top with other global variables
         let secretCodes = {
+            'christmas': () => {
+                // Check if Christmas theme is already active
+                if (isChristmasActive) {
+                    const messageContainer = document.getElementById('message-container');
+                    messageContainer.textContent = "🎄 Christmas theme is already active! 🎅";
+                    messageContainer.className = 'error-message';
+                    messageContainer.style.opacity = '1';
+                    setTimeout(() => {
+                        messageContainer.style.opacity = '0';
+                    }, 2000);
+                    return;
+                }
+
+                // Set the flag to true
+                isChristmasActive = true;
+
+                // Add Christmas theme class to body
+                document.body.classList.add('christmas-theme');
+
+                // Create containers and elements
+                const containers = {
+                    snowContainer: document.createElement('div'),
+                    santa: document.createElement('div'),
+                    background: document.createElement('div'),
+                    lights: document.createElement('div'),
+                    trail: document.createElement('div')
+                };
+
+                // Initialize all elements
+                // Snow container
+                containers.snowContainer.id = 'snow-container';
+                containers.snowContainer.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 1000;
+                `;
+
+                // Santa
+                containers.santa.id = 'santa';
+                containers.santa.innerHTML = '🎅';
+                containers.santa.style.cssText = `
+                    position: fixed;
+                    font-size: 50px;
+                    top: 20px;
+                    left: -50px;
+                    z-index: 1001;
+                    animation: santaFly 15s linear infinite;
+                `;
+
+                // Background
+                containers.background.id = 'christmas-bg';
+                containers.background.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, rgba(229, 115, 115, 0.2), rgba(129, 199, 132, 0.2));
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+
+                // Trail container
+                containers.trail.id = 'mouse-trail';
+                containers.trail.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 1001;
+                `;
+
+                // Add all containers to body
+                Object.values(containers).forEach(container => {
+                    document.body.appendChild(container);
+                });
+
+                // Add styles
+                const styles = {
+                    cursor: document.createElement('style'),
+                    christmas: document.createElement('style')
+                };
+
+                // Cursor style
+                styles.cursor.id = 'christmas-cursor';
+                styles.cursor.textContent = `
+                    * {
+                        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="fill: red;"><text y="16" font-size="16">🎄</text></svg>'), auto !important;
+                    }
+
+                    .trail-dot {
+                        position: fixed;
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: #66BB6A;
+                        pointer-events: none;
+                        z-index: 1003;
+                        opacity: 0.4;
+                        transition: all 0.2s ease;
+                    }
+
+                    .christmas-light {
+                        position: relative;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin: 5px;
+                        animation: lightGlow 1s infinite alternate;
+                    }
+
+                    .christmas-light::after {
+                        content: '';
+                        position: absolute;
+                        width: 2px;
+                        height: 10px;
+                        background: #2c3e50;
+                        top: -8px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                `;
+
+                // Christmas style
+                styles.christmas.id = 'christmas-style';
+                styles.christmas.textContent = `
+                    @keyframes santaFly {
+                        0% { left: -50px; transform: translateY(0); }
+                        50% { transform: translateY(20px); }
+                        100% { left: 100vw; transform: translateY(0); }
+                    }
+
+                    @keyframes fall {
+                        0% { transform: translateY(0) rotate(0deg); }
+                        100% { transform: translateY(100vh) rotate(360deg); }
+                    }
+
+                    @keyframes lightGlow {
+                        0% { opacity: 0.4; transform: scale(0.8); }
+                        100% { opacity: 1; transform: scale(1); }
+                    }
+
+                    .christmas-theme #message-container {
+                        background: #E1BEE7 !important;
+                    }
+
+                    .christmas-theme .game-btn:hover {
+                        background: #EF9A9A !important;
+                        transform: scale(1.05);
+                    }
+                `;
+
+                // Add styles to head
+                Object.values(styles).forEach(style => {
+                    document.head.appendChild(style);
+                });
+
+                // Initialize Christmas lights
+                containers.lights.id = 'christmas-lights';
+                containers.lights.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 30px;
+                    z-index: 1002;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 10px;
+                    pointer-events: none;
+                `;
+
+                // Create lights
+                for (let i = 0; i < 20; i++) {
+                    const light = document.createElement('div');
+                    light.className = 'christmas-light';
+                    light.style.cssText = `
+                        animation-delay: ${Math.random() * 1}s;
+                        background: ${['#66BB6A', '#F44336', '#66BB6A', '#F44336'][i % 4]};
+                    `;
+                    containers.lights.appendChild(light);
+                }
+                document.body.appendChild(containers.lights);
+
+                // Initialize animations and intervals
+                const intervals = {
+                    snow: null,
+                    trail: null
+                };
+
+                // Mouse trail variables
+                const dots = [];
+                let mouseX = 0;
+                let mouseY = 0;
+
+                // Mouse trail handler
+                function handleMouseMove(e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    
+                    const dot = document.createElement('div');
+                    dot.className = 'trail-dot';
+                    dot.style.left = mouseX + 'px';
+                    dot.style.top = mouseY + 'px';
+                    containers.trail.appendChild(dot);
+                    
+                    dots.push({
+                        element: dot,
+                        alpha: 1
+                    });
+
+                    if (dots.length > 20) {
+                        const oldDot = dots.shift();
+                        oldDot.element.remove();
+                    }
+                }
+
+                // Add mouse trail
+                document.addEventListener('mousemove', handleMouseMove);
+
+                // Trail animation
+                intervals.trail = setInterval(() => {
+                    dots.forEach((dot, index) => {
+                        dot.alpha *= 0.9;
+                        dot.element.style.opacity = dot.alpha;
+                        if (dot.alpha < 0.1) {
+                            dot.element.remove();
+                            dots.splice(index, 1);
+                        }
+                    });
+                }, 30);
+
+                // Define the createSnowflake function before it's used
+                function createSnowflake() {
+                    const snowflake = document.createElement('div');
+                    snowflake.innerHTML = '❄';
+                    snowflake.style.cssText = `
+                        position: fixed;
+                        color: white;
+                        font-size: ${Math.random() * 20 + 10}px;
+                        opacity: ${Math.random() * 0.8 + 0.2};
+                        left: ${Math.random() * 100}vw;
+                        top: -20px;
+                        animation: fall ${Math.random() * 3 + 2}s linear forwards;
+                        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+                        pointer-events: none;
+                        z-index: 1000;
+                    `;
+                    return snowflake;
+                }
+
+                // Ensure this function is defined before this block
+                intervals.snow = setInterval(() => {
+                    const snowflake = createSnowflake();
+                    containers.snowContainer.appendChild(snowflake);
+                    setTimeout(() => snowflake.remove(), 5000);
+                }, 50);
+
+                // Show success message
+                const messageContainer = document.getElementById('message-container');
+                messageContainer.textContent = "🎄 Merry Christmas! Ho Ho Ho! 🎅";
+                messageContainer.className = 'success-message';
+                messageContainer.style.opacity = '1';
+                setTimeout(() => {
+                    messageContainer.style.opacity = '0';
+                }, 2000);
+
+                // Cleanup function
+                const cleanup = () => {
+                    Object.values(intervals).forEach(interval => {
+                        if (interval) clearInterval(interval);
+                    });
+                    document.removeEventListener('mousemove', handleMouseMove);
+                    document.body.classList.remove('christmas-theme');
+                    [...Object.values(containers), ...Object.values(styles)].forEach(el => {
+                        if (el && el.parentNode) el.parentNode.removeChild(el);
+                    });
+                    document.querySelectorAll('.game-btn').forEach(btn => {
+                        btn.style.background = '';
+                        btn.style.boxShadow = '';
+                    });
+                };
+
+                // Set cleanup timeout
+                setTimeout(cleanup, 600000);
+
+                // Add Christmas GIF and message
+                const christmasMessage = document.createElement('div');
+                christmasMessage.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(255, 255, 255, 0.95);
+                    padding: 20px;
+                    border-radius: 15px;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                    text-align: center;
+                    z-index: 1004;
+                    animation: fadeInOut 5s forwards;
+                `;
+
+                christmasMessage.innerHTML = `
+                    <h2 style="color: #c62828; margin-bottom: 15px; font-family: 'Inter', sans-serif;">
+                         Wishing you all a magical year ahead! 🎄
+                    </h2>
+                    <p style="color: #000000; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
+                        May your adventures in geography be filled with endless joy and exciting discoveries! 🌍✨
+                    </p>
+                    <div class="tenor-gif-embed" data-postid="24569905" data-share-method="host" data-aspect-ratio="1.78771" data-width="100%">
+                        <a href="https://tenor.com/view/bastones-de-caramelo-papaleta-un-show-mas-%C3%A1rbol-de-navidad-candy-canes-gif-24569905">
+                            Bastones De Caramelo Papaleta GIF
+                        </a>
+                    </div>
+                `;
+
+                document.body.appendChild(christmasMessage);
+
+                // Add Tenor script
+                const tenorScript = document.createElement('script');
+                tenorScript.type = 'text/javascript';
+                tenorScript.src = 'https://tenor.com/embed.js';
+                tenorScript.async = true;
+                document.body.appendChild(tenorScript);
+
+                // Add animation for the message
+                const messageAnimation = document.createElement('style');
+                messageAnimation.textContent = `
+                    @keyframes fadeInOut {
+                        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                        10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    }
+                `;
+                document.head.appendChild(messageAnimation);
+
+                // Remove message after animation
+                setTimeout(() => {
+                    christmasMessage.remove();
+                    messageAnimation.remove();
+                    tenorScript.remove();
+                }, 10000);
+
+                // Add message and animation cleanup to the cleanup function
+                const originalCleanup = cleanup;
+                cleanup = () => {
+                    originalCleanup();
+                    isChristmasActive = false;  // Reset the flag when cleanup happens
+                    if (christmasMessage.parentNode) christmasMessage.remove();
+                    if (messageAnimation.parentNode) messageAnimation.remove();
+                    if (tenorScript.parentNode) tenorScript.remove();
+                };
+            },
+
             'mordecai': () => {
                 // Skip current country in hints mode
                 if (gameMode === 'hints') {
@@ -1146,6 +1509,10 @@ let map;
                     <div id="audio-container" style="display: none;">
                         <audio id="audio-player">
                             <source src="music1.mp3" type="audio/mp3">
+                            <source src="music2.mp3" type="audio/mp3">
+                            <source src="music3.mp3" type="audio/mp3">
+                            <source src="music4.mp3" type="audio/mp3">
+                            <source src="music5.mp3" type="audio/mp3">
                         </audio>
                     </div>
                     <div id="music-player" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
@@ -1180,11 +1547,11 @@ let map;
                             <select id="song-select" onchange="changeSong()" 
                                 style="width: 100%; margin: 10px 0; padding: 6px; border-radius: 8px; 
                                 background: #333; color: white; border: 1px solid #444;">
-                                <option value="music1.mp3">Better than yesterday</option>
-                                <option value="music2.mp3">Atlas Pulse</option>
-                                <option value="music3.mp3">Chill Lofi</option>
+                                <option value="music1.mp3">Chill Lofi</option>
+                                <option value="music2.mp3">Upbeat Study</option>
+                                <option value="music3.mp3">Ambient Focus</option>
                                 <option value="music4.mp3">Jazz Cafe</option>
-                                <option value="music5.mp3">Sphagetti</option>
+                                <option value="music5.mp3">Nature Sounds</option>
                             </select>
                             
                             <div style="margin: 10px 0;">
@@ -2207,7 +2574,6 @@ let map;
                     hintText.textContent = `Hints remaining: ${hintsRemaining}`;
                 }
             }
-        }
 
         // Helper functions for default hints
         function getRegion(country) {
@@ -2254,6 +2620,7 @@ let map;
             }, 2000);
         }
 
+        // Move this function outside of the secretCodes object, place it at the same level as other global functions
         function redirectToMultiplayer() {
             // Open Country Odyssey website in a new tab
             window.open('https://countryodyssey.onrender.com/', '_blank');
@@ -2261,3 +2628,159 @@ let map;
             // Log for debugging
             console.log('Opening Country Odyssey multiplayer in new tab...');
         }
+
+        // Add these helper functions right after the secretCodes object
+
+        // Helper function for snow
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '❄';
+            snowflake.style.cssText = `
+                position: fixed;
+                color: white;
+                font-size: ${Math.random() * 20 + 10}px;
+                opacity: ${Math.random() * 0.8 + 0.2};
+                left: ${Math.random() * 100}vw;
+                top: -20px;
+                animation: fall ${Math.random() * 3 + 2}s linear forwards;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+                pointer-events: none;
+                z-index: 1000;
+            `;
+            return snowflake;
+        }
+
+        // Helper function for trail dots
+        function createTrailDot(e) {
+            const dot = document.createElement('div');
+            dot.className = 'trail-dot';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            containers.trail.appendChild(dot);
+            dots.push({
+                element: dot,
+                x: e.clientX,
+                y: e.clientY,
+                alpha: 1
+            });
+
+            if (dots.length > 20) {
+                const oldDot = dots.shift();
+                oldDot.element.remove();
+            }
+        }
+
+        // Helper function for trail animation
+        function updateTrail() {
+            dots.forEach((dot, index) => {
+                dot.alpha *= 0.9;
+                dot.element.style.opacity = dot.alpha;
+                if (dot.alpha < 0.1) {
+                    dot.element.remove();
+                    dots.splice(index, 1);
+                }
+            });
+        }
+
+        // Floating Emoji class
+        class FloatingEmoji {
+            constructor(emoji) {
+                this.element = document.createElement('div');
+                this.element.className = 'floating-emoji';
+                this.element.textContent = emoji;
+                this.element.style.cssText = `
+                    position: fixed;
+                    font-size: 24px;
+                    cursor: pointer;
+                    user-select: none;
+                    z-index: 1002;
+                `;
+                
+                this.x = Math.random() * (window.innerWidth - 30);
+                this.y = Math.random() * (window.innerHeight - 30);
+                this.velocityY = 0;
+                this.velocityX = 0;
+                this.gravity = 0.5;
+                this.bounce = 0.7;
+                this.friction = 0.99;
+                this.isJumping = false;
+
+                this.element.style.left = `${this.x}px`;
+                this.element.style.top = `${this.y}px`;
+
+                this.element.addEventListener('mouseover', () => {
+                    if (!this.isJumping) {
+                        this.velocityY = -15;
+                        this.velocityX = (Math.random() - 0.5) * 10;
+                        this.isJumping = true;
+                    }
+                });
+
+                containers.emojiContainer.appendChild(this.element);
+            }
+
+            update() {
+                if (this.isJumping) {
+                    this.velocityY += this.gravity;
+                    this.velocityX *= this.friction;
+                    
+                    this.x += this.velocityX;
+                    this.y += this.velocityY;
+
+                    // Bounce off walls
+                    if (this.x < 0 || this.x > window.innerWidth - 30) {
+                        this.velocityX *= -this.bounce;
+                        this.x = this.x < 0 ? 0 : window.innerWidth - 30;
+                    }
+
+                    // Bounce off floor
+                    if (this.y > window.innerHeight - 30) {
+                        this.velocityY *= -this.bounce;
+                        this.y = window.innerHeight - 30;
+                        
+                        if (Math.abs(this.velocityY) < 0.5) {
+                            this.isJumping = false;
+                            this.velocityY = 0;
+                            this.velocityX = 0;
+                        }
+                    }
+
+                    this.element.style.left = `${this.x}px`;
+                    this.element.style.top = `${this.y}px`;
+                    this.element.style.transform = `rotate(${this.velocityX * 2}deg)`;
+                }
+            }
+        }
+
+        // Add Christmas lights
+        function createChristmasLights() {
+            containers.lights.id = 'christmas-lights';
+            containers.lights.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 30px;
+                z-index: 1002;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 10px;
+                pointer-events: none;
+            `;
+
+            for (let i = 0; i < 20; i++) {
+                const light = document.createElement('div');
+                light.className = 'christmas-light';
+                light.style.cssText = `
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    margin: 5px;
+                    animation: lightGlow 1s infinite alternate;
+                    animation-delay: ${Math.random() * 1}s;
+                    background: ${['#66BB6A', '#F44336', '#66BB6A', '#F44336'][i % 4]};
+                `;
+                containers.lights.appendChild(light);
+            }
+        }
+    }
